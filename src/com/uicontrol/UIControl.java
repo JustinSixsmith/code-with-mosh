@@ -1,11 +1,13 @@
 package com.uicontrol;
 
-public class UIControl {
+public abstract class UIControl {
     private boolean isEnabled = true;
 
-    public UIControl(boolean isEnabled) {
-        this.isEnabled = isEnabled;
-    }
+//    public UIControl(boolean isEnabled) {
+//        this.isEnabled = isEnabled;
+//    }
+
+    public abstract void render();
 
     public void enable() {
         isEnabled = true;
