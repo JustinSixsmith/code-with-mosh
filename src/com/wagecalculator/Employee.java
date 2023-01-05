@@ -1,4 +1,4 @@
-package WageCalculator;
+package com.wagecalculator;
 
 public class Employee {
     private int baseSalary;

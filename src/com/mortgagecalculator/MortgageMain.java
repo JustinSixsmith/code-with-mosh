@@ -1,4 +1,4 @@
-package mortgageCalculator;
+package com.mortgagecalculator;
 
 public class MortgageMain {
 

@@ -1,4 +1,4 @@
-package mortgageCalculator;
+package com.mortgagecalculator;
 
 public class MortgageCalculator {
     private final static byte MONTHS_IN_YEAR = 12;
