@@ -1,7 +1,9 @@
 package com.codewithmosh;
 
+import com.codewithmosh.exceptions.ExceptionsDemo;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello");
+        ExceptionsDemo.show();
     }
 }
