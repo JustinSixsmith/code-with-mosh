@@ -9,14 +9,11 @@ import java.text.SimpleDateFormat;
 
 public class ExceptionsDemo {
     public static void show() {
-
-        try (
-                var reader = new FileReader("file.txt");
-                var writer = new FileWriter("...")
-                ) {
-            var value = reader.read();
+        var account = new Account();
+        try {
+            account.deposit(1);
         } catch (IOException e) {
-            System.out.println("Could not read data.");
+            e.printStackTrace();
         }
     }
 }
