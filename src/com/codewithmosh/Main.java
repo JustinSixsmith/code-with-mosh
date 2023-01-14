@@ -1,15 +1,17 @@
 package com.codewithmosh;
 
 import com.codewithmosh.exceptions.ExceptionsDemo;
-import com.codewithmosh.generics.GenericList;
-import com.codewithmosh.generics.List;
-import com.codewithmosh.generics.User;
-import com.codewithmosh.generics.Utils;
+import com.codewithmosh.generics.*;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        Utils.print(1, 10);
+        var list = new GenericList<String>();
+        list.add("a");
+        list.add("b");
+        for (var item : list.items) {
+            System.out.println(item);
+        }
     }
 }
