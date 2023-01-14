@@ -1,6 +1,8 @@
 package com.codewithmosh.generics;
 
-public class GenericList<T> {
+import java.util.Iterator;
+
+public class GenericList<T> implements Iterable<T>{
     public T[] items = (T[]) new Object[10];
     private int count;
 
@@ -10,5 +12,10 @@ public class GenericList<T> {
 
     public T get(int index) {
         return items[index];
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
     }
 }
