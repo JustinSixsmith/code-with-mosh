@@ -1,8 +1,11 @@
 package com.codewithmosh.lambdas;
 
 public class LambdasDemo {
+  public LambdasDemo(String message) {
+  }
+
   public static void show() {
-    greet(new ConsolePrinter());
+    greet(LambdasDemo::new);
   }
 
   public static void greet(Printer printer) {
