@@ -1,18 +1,12 @@
 package com.codewithmosh.lambdas;
 
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class LambdasDemo {
     public static void show() {
-        Function<String, String> replaceColon = str -> str.replace(":", "=");
-        Function<String, String> addBraces = str -> "{" + str + "}";
-
-        var result = replaceColon
-                .andThen(addBraces)
-                .apply("kay:value");
-
-        result = addBraces.compose(replaceColon).apply("key:value");
-
+        Predicate<String> isLongerThan5 = str -> str.length() > 5;
+        var result = isLongerThan5.test("sky");
         System.out.println(result);
     }
 }
