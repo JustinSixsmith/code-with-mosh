@@ -21,5 +21,7 @@ public class StreamsDemo {
         var count2 = movies.stream()
                 .filter(movie -> movie.getLikes() > 10)
                 .count();
+        System.out.println(count);
+        System.out.println(count2);
     }
 }
