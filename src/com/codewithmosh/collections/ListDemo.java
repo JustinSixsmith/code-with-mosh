@@ -6,11 +6,8 @@ import java.util.List;
 
 public class ListDemo {
     public static void show() {
-        List<Customer> customers = new ArrayList<>();
-        customers.add(new Customer("b"));
-        customers.add(new Customer("a"));
-        customers.add(new Customer("c"));
-        Collections.sort(customers);
-        System.out.println(customers);
+        List<String> list = new ArrayList<>();
+        Collections.addAll(list, "a", "b", "c");
+        System.out.println(list.subList(0, 2));
     }
 }
