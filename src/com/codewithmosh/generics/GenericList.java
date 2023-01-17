@@ -1,6 +1,7 @@
 package com.codewithmosh.generics;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class GenericList<T> implements Iterable<T> {
     private T[] items = (T[]) new Object[10];
@@ -29,7 +30,7 @@ public class GenericList<T> implements Iterable<T> {
 
         @Override
         public boolean hasNext() {
-            return (index > list.count);
+            return (index < list.count);
         }
 
         @Override

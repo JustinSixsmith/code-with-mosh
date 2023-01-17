@@ -10,7 +10,6 @@ public class Main {
         var list = new GenericList<String>();
         list.add("a");
         list.add("b");
-        System.out.println(list.get(0));
         for (var item : list) {
             System.out.println(item);
         }
