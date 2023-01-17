@@ -1,13 +1,11 @@
 package com.codewithmosh.lambdas;
 
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public class LambdasDemo {
     public static void show() {
-        Supplier<Double> getRandom = () -> Math.random();
-        var random = getRandom.get();
-        System.out.println(random);
+        Function<String, Integer> map = str -> str.length();
+        var length = map.apply("sky");
+        System.out.println(length);
     }
 }
