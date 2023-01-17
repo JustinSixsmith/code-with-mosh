@@ -4,8 +4,15 @@ import java.util.function.Function;
 
 public class LambdasDemo {
     public static void show() {
-        Function<String, Integer> map = str -> str.length();
-        var length = map.apply("sky");
-        System.out.println(length);
+        Function<String, String> replaceColon = str -> str.replace(":", "=");
+        Function<String, String> addBraces = str -> "{" + str + "}";
+
+        var result = replaceColon
+                .andThen(addBraces)
+                .apply("kay:value");
+
+        result = addBraces.compose(replaceColon).apply("key:value");
+
+        System.out.println(result);
     }
 }
