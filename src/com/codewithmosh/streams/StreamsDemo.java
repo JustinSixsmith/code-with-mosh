@@ -1,6 +1,7 @@
 package com.codewithmosh.streams;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class StreamsDemo {
@@ -12,11 +13,17 @@ public class StreamsDemo {
 //            .forEach(n -> System.out.println(n));
 
 
-//        List<Movie> movies = List.of(
-//                new Movie("a", 10),
-//                new Movie("b", 15),
-//                new Movie("b", 20)
-//        );
+        List<Movie> movies = List.of(
+                new Movie("a", 10),
+                new Movie("b", 15),
+                new Movie("b", 20)
+        );
+
+        Predicate<Movie> isPopular = movie -> movie.getLikes() > 10;
+
+        movies.stream()
+                .filter(isPopular)
+                .forEach(movie -> System.out.println(movie.getTitle()));
 
 //        movies.stream()
 //                .map(movie -> movie.getTitle())
