@@ -1,11 +1,7 @@
 package com.codewithmosh.streams;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamsDemo {
     public static void show() {
@@ -17,17 +13,24 @@ public class StreamsDemo {
 
 
         List<Movie> movies = List.of(
-                new Movie("a", 10),
-                new Movie("b", 20),
-                new Movie("c", 30)
+                new Movie("a", 10, Genre.THRILLER),
+                new Movie("b", 20, Genre.ACTION),
+                new Movie("c", 30, Genre.ACTION)
         );
 
         var result = movies.stream()
-                .filter(m -> m.getLikes() >10)
-                .map(Movie::getTitle)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.groupingBy(
+                        Movie::getGenre,
+                        Collectors.mapping(Movie::getTitle, Collectors.joining(", "))));
 
         System.out.println(result);
+
+//        var result = movies.stream()
+//                .filter(m -> m.getLikes() >10)
+//                .map(Movie::getTitle)
+//                .collect(Collectors.joining(", "));
+//
+//        System.out.println(result);
 
 //        Integer sum = movies.stream()
 //                .map(Movie::getLikes)
