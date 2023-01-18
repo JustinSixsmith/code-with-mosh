@@ -2,9 +2,14 @@ package com.codewithmosh.streams;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StreamsDemo {
     public static void show() {
+        IntStream.rangeClosed(1, 5)
+                .forEach(System.out::println);
+
+
 //        var stream = Stream.of(List.of(1, 2, 3), List.of(4, 5, 6));
 //
 //        stream
@@ -12,19 +17,19 @@ public class StreamsDemo {
 //            .forEach(n -> System.out.println(n));
 
 
-        List<Movie> movies = List.of(
-                new Movie("a", 10, Genre.THRILLER),
-                new Movie("b", 20, Genre.ACTION),
-                new Movie("c", 30, Genre.ACTION)
-        );
-
-        var result = movies.stream()
-                .collect(Collectors.partitioningBy(
-                        m -> m.getLikes() > 20,
-                        Collectors.mapping(Movie::getTitle,
-                                Collectors.joining(", "))));
-
-        System.out.println(result);
+//        List<Movie> movies = List.of(
+//                new Movie("a", 10, Genre.THRILLER),
+//                new Movie("b", 20, Genre.ACTION),
+//                new Movie("c", 30, Genre.ACTION)
+//        );
+//
+//        var result = movies.stream()
+//                .collect(Collectors.partitioningBy(
+//                        m -> m.getLikes() > 20,
+//                        Collectors.mapping(Movie::getTitle,
+//                                Collectors.joining(", "))));
+//
+//        System.out.println(result);
 
 //        var result = movies.stream()
 //                .collect(Collectors.groupingBy(
