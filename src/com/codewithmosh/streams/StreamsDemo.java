@@ -2,7 +2,9 @@ package com.codewithmosh.streams;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamsDemo {
@@ -21,10 +23,23 @@ public class StreamsDemo {
         );
 
         var result = movies.stream()
-                .max(Comparator.comparing(Movie::getLikes))
-                .get();
+                .filter(m -> m.getLikes() >10)
+                .map(Movie::getTitle)
+                .collect(Collectors.joining(", "));
 
-        System.out.println(result.getTitle());
+        System.out.println(result);
+
+//        Integer sum = movies.stream()
+//                .map(Movie::getLikes)
+//                .reduce(0, Integer::sum);
+//
+//        System.out.println(sum);
+
+//        var result = movies.stream()
+//                .max(Comparator.comparing(Movie::getLikes))
+//                .get();
+//
+//        System.out.println(result.getTitle());
 
 //        movies.stream()
 //                .filter(movie -> movie.getLikes() > 10)
