@@ -1,5 +1,6 @@
 package com.codewithmosh.streams;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -14,16 +15,20 @@ public class StreamsDemo {
 
 
         List<Movie> movies = List.of(
-                new Movie("a", 10),
-                new Movie("b", 30),
-                new Movie("c", 20)
+                new Movie("b", 10),
+                new Movie("a", 20),
+                new Movie("c", 30)
         );
 
         movies.stream()
-                .dropWhile(movie -> movie.getLikes() < 30)
-                .forEach(movie -> System.out.println(movie.getTitle()));
+                .sorted(Comparator.comparing(Movie::getTitle).reversed())
+                .forEach(m -> System.out.println(m.getTitle()));
 
 
+
+//        movies.stream()
+//                .dropWhile(movie -> movie.getLikes() < 30)
+//                .forEach(movie -> System.out.println(movie.getTitle()));
 
 //        Predicate<Movie> isPopular = movie -> movie.getLikes() > 10;
 //
