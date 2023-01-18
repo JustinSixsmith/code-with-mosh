@@ -20,12 +20,18 @@ public class StreamsDemo {
                 new Movie("c", 30)
         );
 
-        movies.stream()
-                .filter(movie -> movie.getLikes() > 10)
-                .peek(m -> System.out.println("filtered: " + m.getTitle()))
-                .map(Movie::getTitle)
-                .peek(t -> System.out.println("mapped: " + t))
-                .forEach(System.out::println);
+        var result = movies.stream()
+                .max(Comparator.comparing(Movie::getLikes))
+                .get();
+
+        System.out.println(result.getTitle());
+
+//        movies.stream()
+//                .filter(movie -> movie.getLikes() > 10)
+//                .peek(m -> System.out.println("filtered: " + m.getTitle()))
+//                .map(Movie::getTitle)
+//                .peek(t -> System.out.println("mapped: " + t))
+//                .forEach(System.out::println);
 
 //        movies.stream()
 //                .map(Movie::getLikes)
