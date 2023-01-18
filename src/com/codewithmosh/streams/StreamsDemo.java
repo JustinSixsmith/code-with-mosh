@@ -15,15 +15,21 @@ public class StreamsDemo {
 
         List<Movie> movies = List.of(
                 new Movie("a", 10),
-                new Movie("b", 15),
-                new Movie("b", 20)
+                new Movie("b", 30),
+                new Movie("c", 20)
         );
 
-        Predicate<Movie> isPopular = movie -> movie.getLikes() > 10;
-
         movies.stream()
-                .filter(isPopular)
+                .dropWhile(movie -> movie.getLikes() < 30)
                 .forEach(movie -> System.out.println(movie.getTitle()));
+
+
+
+//        Predicate<Movie> isPopular = movie -> movie.getLikes() > 10;
+//
+//        movies.stream()
+//                .filter(isPopular)
+//                .forEach(movie -> System.out.println(movie.getTitle()));
 
 //        movies.stream()
 //                .map(movie -> movie.getTitle())
