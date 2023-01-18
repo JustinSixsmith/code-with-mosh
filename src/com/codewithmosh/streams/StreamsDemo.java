@@ -15,16 +15,26 @@ public class StreamsDemo {
 
 
         List<Movie> movies = List.of(
-                new Movie("b", 10),
-                new Movie("a", 20),
+                new Movie("a", 10),
+                new Movie("b", 20),
                 new Movie("c", 30)
         );
 
         movies.stream()
-                .sorted(Comparator.comparing(Movie::getTitle).reversed())
-                .forEach(m -> System.out.println(m.getTitle()));
+                .filter(movie -> movie.getLikes() > 10)
+                .peek(m -> System.out.println("filtered: " + m.getTitle()))
+                .map(Movie::getTitle)
+                .peek(t -> System.out.println("mapped: " + t))
+                .forEach(System.out::println);
 
+//        movies.stream()
+//                .map(Movie::getLikes)
+//                .distinct()
+//                .forEach(System.out::println);
 
+//        movies.stream()
+//                .sorted(Comparator.comparing(Movie::getTitle).reversed())
+//                .forEach(m -> System.out.println(m.getTitle()));
 
 //        movies.stream()
 //                .dropWhile(movie -> movie.getLikes() < 30)
