@@ -4,8 +4,8 @@ public class DownloadFileTask implements Runnable {
 
     private DownloadStatus status;
 
-    public DownloadFileTask(DownloadStatus status) {
-        this.status = status;
+    public DownloadFileTask() {
+        this.status = new DownloadStatus();
     }
 
     @Override
@@ -19,4 +19,9 @@ public class DownloadFileTask implements Runnable {
 
         System.out.println("Download complete: " + Thread.currentThread().getName());
     }
+
+    public DownloadStatus getStatus() {
+        return status;
+    }
+
 }
