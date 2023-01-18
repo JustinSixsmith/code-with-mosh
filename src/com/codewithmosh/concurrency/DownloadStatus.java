@@ -1,10 +1,10 @@
 package com.codewithmosh.concurrency;
 
 public class DownloadStatus {
+    private volatile boolean isDone;
     private int totalBytes;
     private int totalFiles;
     private Object totalBytesLock = new Object();
-    private Object totalFilesLock = new Object();
 
     public void incrementTotalBytes() {
         synchronized (totalBytesLock) {
@@ -12,10 +12,8 @@ public class DownloadStatus {
         }
     }
 
-    public void incrementTotalFiles() {
-        synchronized (totalFilesLock) {
+    public synchronized void incrementTotalFiles() {
             totalFiles++;
-        }
     }
 
     public int getTotalBytes() {
@@ -24,5 +22,13 @@ public class DownloadStatus {
 
     public int getTotalFiles() {
         return totalFiles;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void done() {
+        isDone = true;
     }
 }

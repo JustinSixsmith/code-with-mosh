@@ -7,23 +7,34 @@ public class ThreadDemo {
     public static void show() {
         var status = new DownloadStatus();
 
-        List<Thread> threads = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            var thread = new Thread(new DownloadFileTask(status));
-            thread.start();
-            threads.add(thread);
-        }
+        var thread1 = new Thread(new DownloadFileTask(status));
+        var thread2 = new Thread(() -> {
+            while (!status.isDone()) {}
+            System.out.println(status.getTotalBytes());
+        });
 
-        for (var thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        thread1.start();
+        thread2.start();
 
-        System.out.println(status.getTotalBytes());
 
+//        var status = new DownloadStatus();
+//
+//        List<Thread> threads = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            var thread = new Thread(new DownloadFileTask(status));
+//            thread.start();
+//            threads.add(thread);
+//        }
+//
+//        for (var thread : threads) {
+//            try {
+//                thread.join();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        System.out.println(status.getTotalBytes());
 
 
         // Confinement
