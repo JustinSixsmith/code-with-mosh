@@ -1,21 +1,32 @@
 package com.codewithmosh.executors;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ForkJoinPool;
-import java.util.function.Supplier;
 
 public class CompletableFutureDemo {
-    public static int toFahrenheit(int celsius) {
-        return (int) (celsius * 1.8) + 32;
+    public static CompletableFuture<String> getUserEmailAsync() {
+        return CompletableFuture.supplyAsync(() -> "email");
+    }
+
+    public static CompletableFuture<String> getPlaylistAsync(String email) {
+        return CompletableFuture.supplyAsync(() -> "playlist");
     }
 
     public static void show() {
-        var future = CompletableFuture.supplyAsync(() -> 20);
-        future
-            .thenApply(CompletableFutureDemo::toFahrenheit)
+        // id -> email
+        // email -> playlist
+        getUserEmailAsync()
+            .thenCompose(CompletableFutureDemo::getPlaylistAsync)
             .thenAccept(System.out::println);
 
+//    public static int toFahrenheit(int celsius) {
+//        return (int) (celsius * 1.8) + 32;
+//    }
+//
+//    public static void show() {
+//        var future = CompletableFuture.supplyAsync(() -> 20);
+//        future
+//            .thenApply(CompletableFutureDemo::toFahrenheit)
+//            .thenAccept(System.out::println);
 
 //        var future = CompletableFuture.supplyAsync(() -> {
 //            System.out.println("Getting the current weather");
