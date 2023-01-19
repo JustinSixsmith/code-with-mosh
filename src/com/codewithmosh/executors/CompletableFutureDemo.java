@@ -7,13 +7,26 @@ import java.util.function.Supplier;
 
 public class CompletableFutureDemo {
     public static void show() {
-        Supplier<Integer> task = () -> 1;
-        var future = CompletableFuture.supplyAsync(task);
-        try {
-            var result = future.get();
+        var future = CompletableFuture.supplyAsync(() -> 1);
+        future.thenAcceptAsync(result -> {
+            System.out.println(Thread.currentThread().getName());
             System.out.println(result);
-        } catch (InterruptedException | ExecutionException e) {
+        });
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+
+//        Supplier<Integer> task = () -> 1;
+//        var future = CompletableFuture.supplyAsync(task);
+//        try {
+//            var result = future.get();
+//            System.out.println(result);
+//        } catch (InterruptedException | ExecutionException e) {
+//            e.printStackTrace();
+//        }
     }
 }
