@@ -12,6 +12,13 @@ public class ExecutorsDemo {
                 LongTask.simulate();
                 return 1.;
             });
+            System.out.println("Do more work");
+            try {
+                var result = future.get();
+                System.out.println(result);
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
         } finally {
             executor.shutdown();
         }
