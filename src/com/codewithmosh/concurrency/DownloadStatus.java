@@ -1,23 +1,22 @@
 package com.codewithmosh.concurrency;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class DownloadStatus {
     private volatile boolean isDone;
-    private int totalBytes;
+    private AtomicInteger totalBytes = new AtomicInteger();
     private int totalFiles;
-    private Object totalBytesLock = new Object();
 
     public void incrementTotalBytes() {
-        synchronized (totalBytesLock) {
-            totalBytes++;
-        }
+            totalBytes.incrementAndGet();
     }
 
-    public synchronized void incrementTotalFiles() {
+    public void incrementTotalFiles() {
             totalFiles++;
     }
 
     public int getTotalBytes() {
-        return totalBytes;
+        return totalBytes.get();
     }
 
     public int getTotalFiles() {
