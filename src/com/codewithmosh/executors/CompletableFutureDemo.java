@@ -12,7 +12,8 @@ public class CompletableFutureDemo {
         });
 
         try {
-            var result = future.orTimeout(1, TimeUnit.SECONDS)
+            var result = future
+                    .completeOnTimeout(1, 1, TimeUnit.SECONDS)
                     .get();
             System.out.println(result);
         } catch (InterruptedException | ExecutionException e) {
