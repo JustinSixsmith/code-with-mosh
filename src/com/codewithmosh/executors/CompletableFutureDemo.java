@@ -1,22 +1,39 @@
 package com.codewithmosh.executors;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class CompletableFutureDemo {
     public static void show() {
-        var first = CompletableFuture.supplyAsync(() -> "20USD")
-                .thenApply(str -> {
-                    var price = str.replace("USD", "");
-                    return Integer.parseInt(price);
-                });
+        var first = CompletableFuture.supplyAsync(() -> 1);
+        var second = CompletableFuture.supplyAsync(() -> 2);
+        var third = CompletableFuture.supplyAsync(() -> 3);
 
-        var second = CompletableFuture.supplyAsync(() -> 0.9);
+        var all = CompletableFuture.allOf(first, second, third);
+        all.thenRun(() -> {
+            try {
+                var firstResult = first.get();
+                System.out.println(firstResult);
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
 
-        first.thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
-                .thenAccept(System.out::println);
+            System.out.println("All tasks completed successfully");
+        });
+
     }
 }
 
+//        var first = CompletableFuture.supplyAsync(() -> "20USD")
+//                .thenApply(str -> {
+//                    var price = str.replace("USD", "");
+//                    return Integer.parseInt(price);
+//                });
+//
+//        var second = CompletableFuture.supplyAsync(() -> 0.9);
+//
+//        first.thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
+//                .thenAccept(System.out::println);
 //    public static CompletableFuture<String> getUserEmailAsync() {
 //        return CompletableFuture.supplyAsync(() -> "email");
 //    }
