@@ -3,20 +3,34 @@ package com.codewithmosh.executors;
 import java.util.concurrent.CompletableFuture;
 
 public class CompletableFutureDemo {
-    public static CompletableFuture<String> getUserEmailAsync() {
-        return CompletableFuture.supplyAsync(() -> "email");
-    }
-
-    public static CompletableFuture<String> getPlaylistAsync(String email) {
-        return CompletableFuture.supplyAsync(() -> "playlist");
-    }
-
     public static void show() {
-        // id -> email
-        // email -> playlist
-        getUserEmailAsync()
-            .thenCompose(CompletableFutureDemo::getPlaylistAsync)
-            .thenAccept(System.out::println);
+        var first = CompletableFuture.supplyAsync(() -> "20USD")
+                .thenApply(str -> {
+                    var price = str.replace("USD", "");
+                    return Integer.parseInt(price);
+                });
+
+        var second = CompletableFuture.supplyAsync(() -> 0.9);
+
+        first.thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
+                .thenAccept(System.out::println);
+    }
+}
+
+//    public static CompletableFuture<String> getUserEmailAsync() {
+//        return CompletableFuture.supplyAsync(() -> "email");
+//    }
+//
+//    public static CompletableFuture<String> getPlaylistAsync(String email) {
+//        return CompletableFuture.supplyAsync(() -> "playlist");
+//    }
+
+
+// id -> email
+// email -> playlist
+//        getUserEmailAsync()
+//            .thenCompose(CompletableFutureDemo::getPlaylistAsync)
+//            .thenAccept(System.out::println);
 
 //    public static int toFahrenheit(int celsius) {
 //        return (int) (celsius * 1.8) + 32;
@@ -62,5 +76,4 @@ public class CompletableFutureDemo {
 //        } catch (InterruptedException | ExecutionException e) {
 //            e.printStackTrace();
 //        }
-    }
-}
+
