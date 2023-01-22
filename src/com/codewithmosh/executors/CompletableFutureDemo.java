@@ -5,23 +5,44 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class CompletableFutureDemo {
+    public static String displayQuote(String site, int price) {
+
+    }
+
     public static void show() {
-        var future = CompletableFuture.supplyAsync(() -> {
+        var firstQuote = CompletableFuture.supplyAsync(() -> 100);
+
+        var secondQuote = CompletableFuture.supplyAsync(() -> {
             LongTask.simulate();
-            return 1;
+            return 105;
         });
 
-        try {
-            var result = future
-                    .completeOnTimeout(1, 1, TimeUnit.SECONDS)
-                    .get();
-            System.out.println(result);
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
+        var thirdQuote = CompletableFuture.supplyAsync(() -> {
+            LongTask.simulate();
+            return 108;
+        });
+
+
+
 
     }
 }
+
+
+//        var future = CompletableFuture.supplyAsync(() -> {
+//            LongTask.simulate();
+//            return 1;
+//        });
+//
+//        try {
+//            var result = future
+//                    .completeOnTimeout(1, 1, TimeUnit.SECONDS)
+//                    .get();
+//            System.out.println(result);
+//        } catch (InterruptedException | ExecutionException e) {
+//            e.printStackTrace();
+//        }
+
 
 //        var first = CompletableFuture.supplyAsync(() -> {
 //            LongTask.simulate();
