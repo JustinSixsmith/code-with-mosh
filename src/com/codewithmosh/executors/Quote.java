@@ -16,4 +16,12 @@ public class Quote {
     public int getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "Quote{" +
+                "site='" + site + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
