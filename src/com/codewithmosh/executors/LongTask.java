@@ -7,5 +7,12 @@ public class LongTask {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+    }public static void simulate(int delay) {
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
